@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Hero Section</title>
+    <link rel="stylesheet" href="hero.css">
+    <style>
+        .text {
+            font-family: "Lexend", sans-serif;
+            font-weight: 500;
+            line-height: 1.5;
+            max-width: auto;
+            padding: 1em;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1em;
+            background-color: #fff;
+            animation: blink 0.7s infinite;
+            transform: skew(-20deg);
+            margin-left: 2px;
+        }
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            50.01%, 100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title text"><span class="cursor"></span></h1>
+            <p class="hero-subtitle">A brief description of your content</p>
+            <a href="#" class="hero-button">Get Started</a>
+        </div>
+    </header>
+    <script>
+        const div = document.querySelector(".text");
+        const cursorDiv = document.querySelector(".cursor");
+        const texts = [
+            "Simplified payment for your business needs",
+            "Redefining Multi-currency Electronic Wallet",
+            "Affordable, Effortless and Secure Payments"
+        ];
+
+        let textIndex = 0;
+
+        function textTypingEffect(el, text, i = 0) {
+            if (i === 0) el.textContent = "";
+            el.textContent += text[i];
+
+            // terminate at the end of the text and start next text
+            if (i === text.length - 1) {
+                setTimeout(() => {
+                    textIndex = (textIndex + 1) % texts.length; // Move to the next text in the array
+                    textTypingEffect(el, texts[textIndex]);
+                }, 3000); // Pause before starting the next text
+                return;
+            }
+
+            setTimeout(() => textTypingEffect(el, text, i + 1), 100);
+        }
+
+        textTypingEffect(div, texts[textIndex]);
+    </script>
+</body>
+
+</html>

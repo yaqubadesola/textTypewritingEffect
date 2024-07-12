@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Hero Section</title>
+    <style>
+        .text{
+            font-family: "Lexend", sans-serif;
+            font-weight:500;
+            line-height: 1.5;
+            max-width: 300px;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+  <div class="text"></div>
+  <script>
+    const div = document.querySelector(".text");
+    const text = "This is how you create a typing effect with Javascript &#x1F601";
+
+    function textTypingEffect(el, text, i=0){
+        if(i === 0) el.textContent = "";
+        el.textContent += text[i];
+
+        //terminate at the end of the text
+        if(i === text.length - 1){
+            return;
+        } 
+        setTimeout(() =>textTypingEffect(el, text, i + 1),50 );
+        
+    }
+
+    textTypingEffect(div, text)
+  </script>
+</body>
+
+</html>
